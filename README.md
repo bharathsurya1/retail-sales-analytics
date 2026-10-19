@@ -38,3 +38,17 @@ Further analysis identified Tables as the largest loss-making Furniture subcateg
 An analysis of Furniture discounts found that every observed discount group at 30% or higher had a negative aggregate profit margin, whereas all groups at 20% or lower remained profitable. Some higher-discount groups contained relatively few records, so their individual margins should be interpreted cautiously.
 
 **Business implication:** Review discount policies for loss-making Furniture products, particularly Tables, and investigate product costs and pricing before making changes. The observed relationship does not establish that discounting alone caused the losses.
+
+## Data Visualizations
+
+### 1. Total Sales by Category
+![Total Sales by Category](charts/category_sales.png)
+
+### 2. Profit Margin by Category
+![Profit Margin by Category](charts/category_profit_margin.png)
+
+### 3. Furniture Subcategory Profit and Loss
+![Furniture Subcategory Profit](charts/furniture_subcategory_profit.png)
+
+### 4. Furniture Discount vs. Profit Margin
+![Furniture Discount vs Profit Margin](charts/furniture_discount_profit_margin.png)
