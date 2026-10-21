@@ -1,10 +1,15 @@
+from pathlib import Path
+
 import pandas as pd
 
 # ==========================================
 # 1. LOAD DATA
 # ==========================================
 
-df = pd.read_csv("data/superstore.csv")
+BASE_DIR = Path(__file__).resolve().parent
+CSV_PATH = BASE_DIR / "data" / "superstore.csv"
+
+df = pd.read_csv(CSV_PATH)
 
 
 # ==========================================
@@ -30,6 +35,22 @@ duplicate_row_ids = df["Row ID"].duplicated().sum()
 shipping_min = df["Shipping Days"].min()
 shipping_max = df["Shipping Days"].max()
 shipping_avg = df["Shipping Days"].mean()
+
+print("\n========== DATA QUALITY REPORT ==========")
+
+print("Total Rows:", len(df))
+print("Total Columns:", len(df.columns))
+
+print("\nMissing Values by Column:")
+print(missing_values[missing_values > 0])
+
+print("\nDuplicate Rows:", duplicate_rows)
+print("Duplicate Row IDs:", duplicate_row_ids)
+
+print("\nShipping Time Statistics:")
+print("Minimum Shipping Days:", shipping_min)
+print("Maximum Shipping Days:", shipping_max)
+print("Average Shipping Days:", round(shipping_avg, 2))
 
 
 # ==========================================

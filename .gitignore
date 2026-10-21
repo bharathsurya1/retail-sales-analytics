@@ -19,3 +19,6 @@ __pycache__/
 
 # Original dataset - kept locally
 data/superstore.csv
+
+# Generated SQLite database - recreated by setup_database.py
+data/superstore.db

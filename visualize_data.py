@@ -1,11 +1,18 @@
+from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
+BASE_DIR = Path(__file__).resolve().parent
+CSV_PATH = BASE_DIR / "data" / "superstore.csv"
+CHARTS_DIR = BASE_DIR / "charts"
+
+CHARTS_DIR.mkdir(parents=True, exist_ok=True)
+
 # ==========================================
 # 1. LOAD DATA
 # ==========================================
-df = pd.read_csv("data/superstore.csv")
+df = pd.read_csv(CSV_PATH)
 
 # ==========================================
 # 2. CATEGORY SALES ANALYSIS
@@ -66,7 +73,8 @@ for bar in ax.patches:
         xytext=(0, 5),
         textcoords="offset points"
     )
-
+# Leave enough space above the bars for value labels
+ax.set_ylim(0, category_sales.max() * 1.15)
 plt.title("Total Sales by Product Category")
 plt.xlabel("Product Category")
 plt.ylabel("Total Sales ($)")
@@ -77,8 +85,8 @@ ax.yaxis.set_major_formatter(
 )
 
 plt.tight_layout()
-plt.savefig("charts/category_sales.png", dpi=300, bbox_inches="tight")
-plt.show()
+plt.savefig(CHARTS_DIR / "category_sales.png", dpi=300, bbox_inches="tight")
+plt.close()
 
 # ==========================================
 # 7. CATEGORY PROFIT MARGIN CHART
@@ -103,15 +111,16 @@ for bar in ax2.patches:
         xytext=(0, 5),
         textcoords="offset points"
     )
-
+# Leave space above the bars for percentage labels
+ax2.set_ylim(0, category_profit["Profit Margin (%)"].max() * 1.15)
 plt.title("Profit Margin by Product Category")
 plt.xlabel("Product Category")
 plt.ylabel("Profit Margin (%)")
 plt.xticks(rotation=0)
 
 plt.tight_layout()
-plt.savefig("charts/category_profit_margin.png", dpi=300, bbox_inches="tight")
-plt.show()
+plt.savefig(CHARTS_DIR / "category_profit_margin.png", dpi=300, bbox_inches="tight")
+plt.close()
 
 # ==========================================
 # 8. FURNITURE SUBCATEGORY PROFIT CHART
@@ -139,7 +148,11 @@ for bar in ax3.patches:
         xytext=(0, 5 if height >= 0 else -5),
         textcoords="offset points"
     )
-
+# Leave room for labels above profits and below losses
+ax3.set_ylim(
+    furniture_profit.min() * 1.20,
+    furniture_profit.max() * 1.20
+)
 plt.title("Furniture Profit and Loss by Subcategory")
 plt.xlabel("Furniture Subcategory")
 plt.ylabel("Total Profit ($)")
@@ -147,11 +160,11 @@ plt.xticks(rotation=0)
 
 plt.tight_layout()
 plt.savefig(
-    "charts/furniture_subcategory_profit.png",
+    CHARTS_DIR / "furniture_subcategory_profit.png",
     dpi=300,
     bbox_inches="tight"
 )
-plt.show()
+plt.close()
 
 # ==========================================
 # 9. FURNITURE DISCOUNT VS PROFIT MARGIN
@@ -175,8 +188,8 @@ plt.ylabel("Profit Margin (%)")
 plt.xticks(range(0, 71, 10))
 plt.tight_layout()
 plt.savefig(
-    "charts/furniture_discount_profit_margin.png",
+    CHARTS_DIR / "furniture_discount_profit_margin.png",
     dpi=300,
     bbox_inches="tight"
 )
-plt.show()
+plt.close()
