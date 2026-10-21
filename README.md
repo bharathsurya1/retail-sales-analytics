@@ -138,7 +138,7 @@ Completed:
 - Sales, profitability, and discount analysis
 - Four Matplotlib visualizations
 - SQLite database setup
-- 10 documented and tested SQL queries
+- 12 documented and tested SQL queries
 
 Remaining:
 - Interactive Power BI dashboard
@@ -150,7 +150,7 @@ Remaining:
 - `explore_data.py` — Python data exploration and business analysis
 - `visualize_data.py` — Generates four analytical charts
 - `setup_database.py` — Builds the SQLite database
-- `sql/retail_analysis.sql` — 10 documented SQL queries
+- `sql/retail_analysis.sql` — 12 documented SQL queries
 - `charts/` — Four visualizations
 - Power BI dashboard — Planned
 
@@ -167,6 +167,45 @@ Further analysis identified Tables as the largest loss-making Furniture subcateg
 An analysis of Furniture discounts found that every observed discount group at 30% or higher had a negative aggregate profit margin, whereas all groups at 20% or lower remained profitable. Some higher-discount groups contained relatively few records, so their individual margins should be interpreted cautiously.
 
 **Business implication:** Review discount policies for loss-making Furniture products, particularly Tables, and investigate product costs and pricing before making changes. The observed relationship does not establish that discounting alone caused the losses.
+
+### 2. Customer Revenue vs. Profitability
+
+Customer-level analysis identified 793 unique customers.
+
+The highest-revenue customer, Sean Miller, generated
+$25,043.05 in sales across five orders but recorded
+a loss of $1,980.74, representing a -7.91% profit margin.
+
+In contrast, Tamara Chand generated $19,052.22 in sales
+and $8,981.32 in profit, achieving a 47.14% margin.
+
+**Business implication:** High customer revenue does not
+necessarily translate into high profitability. Investigate
+product mix, discounts, and transaction-level costs for
+loss-making customer relationships.
+
+### 3. Top-Selling Product Profitability
+
+An analysis of the three highest-revenue products in each
+category identified nine products: five profitable,
+three loss-making, and one breaking even.
+
+Two of Furniture's three highest-revenue products were
+loss-making, while its highest-revenue product recorded
+zero aggregate profit.
+
+The Cisco TelePresence System generated $22,638.48
+in Technology sales but recorded a loss of $1,811.08.
+
+**Business implication:** Product performance should be
+evaluated using both revenue and profit margin. Review
+pricing, discounts, and recorded costs before making
+changes to loss-making products.
+
+**Data limitation:** Some Product IDs correspond to
+multiple product names. Product rankings therefore use
+Category, Product ID, and Product Name together to
+avoid combining differently named products.
 
 ## Data Visualizations
 

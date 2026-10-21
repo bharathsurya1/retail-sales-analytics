@@ -23,6 +23,16 @@ def main():
     # Recreate the database table from the source CSV
     with sqlite3.connect(DB_PATH) as conn:
         df.to_sql("orders", conn, if_exists="replace", index=False)
+        customers = df[
+        ["Customer ID", "Customer Name"]
+    ].drop_duplicates(subset=["Customer ID"])
+
+    customers.to_sql(
+        "customers",
+        conn,
+        if_exists="replace",
+        index=False
+    )
 
     print("Database setup completed successfully!")
     print(f"Rows imported: {len(df):,}")

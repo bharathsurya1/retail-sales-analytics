@@ -254,3 +254,84 @@ SELECT
 FROM orders
 GROUP BY order_year, Category
 ORDER BY order_year ASC, total_sales DESC;
+
+
+-- ============================================================
+-- Query 11: Top Customers by Revenue and Profitability
+-- Business Question:
+-- Which customers generate the most revenue, and how
+-- profitable are those customer relationships?
+-- ============================================================
+
+WITH customer_performance AS (
+    SELECT
+        c."Customer ID" AS customer_id,
+        c."Customer Name" AS customer_name,
+        COUNT(DISTINCT o."Order ID") AS total_orders,
+        ROUND(SUM(o.Sales), 2) AS total_sales,
+        ROUND(SUM(o.Profit), 2) AS total_profit
+    FROM customers c
+    INNER JOIN orders o
+        ON c."Customer ID" = o."Customer ID"
+    GROUP BY
+        c."Customer ID",
+        c."Customer Name"
+)
+SELECT
+    customer_id,
+    customer_name,
+    total_orders,
+    total_sales,
+    total_profit,
+    ROUND(
+        total_profit * 100.0 / NULLIF(total_sales, 0),
+        2
+    ) AS profit_margin_pct
+FROM customer_performance
+ORDER BY total_sales DESC, customer_id
+LIMIT 10;
+
+
+-- ============================================================
+-- Query 12: Top Revenue Products Within Each Category
+-- Business Question:
+-- Which three products generate the highest revenue
+-- in each category, and are they profitable?
+-- ============================================================
+
+WITH product_performance AS (
+    SELECT
+        Category AS category,
+        "Product ID" AS product_id,
+        "Product Name" AS product_name,
+        ROUND(SUM(Sales), 2) AS total_sales,
+        ROUND(SUM(Profit), 2) AS total_profit
+    FROM orders
+    GROUP BY
+        Category,
+        "Product ID",
+        "Product Name"
+),
+ranked_products AS (
+    SELECT
+        *,
+        ROW_NUMBER() OVER (
+            PARTITION BY category
+            ORDER BY total_sales DESC, product_id, product_name
+        ) AS revenue_rank
+    FROM product_performance
+)
+SELECT
+    category,
+    revenue_rank,
+    product_id,
+    product_name,
+    total_sales,
+    total_profit,
+    ROUND(
+        total_profit * 100.0 / NULLIF(total_sales, 0),
+        2
+    ) AS profit_margin_pct
+FROM ranked_products
+WHERE revenue_rank <= 3
+ORDER BY category, revenue_rank;
