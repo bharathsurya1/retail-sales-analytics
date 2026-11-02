@@ -76,16 +76,19 @@ python -m pip install -r requirements.txt
 
 ### 4. Download the Dataset
 
-Download the Sample Superstore CSV from the dataset source
-linked above.
+Download the Sample Superstore CSV from the dataset source linked above.
 
-Save the CSV in the following location:
+First, create the data directory in the project root:
+
+```bash
+mkdir -p data
+```
+
+Save the downloaded CSV at:
 
 ```text
 data/superstore.csv
 ```
-
-Create the `data` directory if it does not exist.
 
 ### 5. Run the Python Analysis
 
