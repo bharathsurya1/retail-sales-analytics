@@ -122,37 +122,84 @@ sql/retail_analysis.sql
 These queries can be executed against the generated SQLite
 database using a compatible SQLite client.
 
+### 8. Open the Power BI Dashboard
+
+The interactive dashboard was developed using Power BI Desktop on Windows.
+
+1. Download the Sample Superstore CSV from the dataset source listed above.
+2. Save the dataset as `data/superstore.csv`.
+3. Open `dashboard/Retail_Sales_Dashboard.pbix` using Power BI Desktop.
+4. If Power BI reports a missing data source, open **Transform data → Data source settings** and update the CSV file path to the location of your downloaded dataset.
+5. Select **Close & Apply**, then refresh the report if necessary.
+
+The dashboard contains three pages covering executive KPIs, category profitability, and Furniture discount analysis.
+
+Power BI Desktop is required to open and interact with the `.pbix` file.
+
 ## Tools and Technologies
-- SQL
-- Python (pandas, matplotlib)
-- Power BI (dashboard development planned)
-- SQLite
-- Git and GitHub
+
+- **Python:** pandas, NumPy, Matplotlib
+- **SQL:** SQLite, joins, CTEs, aggregations, window functions
+- **Power BI:** Power Query, data modelling, DAX, interactive dashboards
+- **Git & GitHub:** Version control and project documentation
+- **VS Code:** Development environment
 
 ## Project Status
 
-**In Progress — Dashboard Development**
+**Core Analysis and Interactive Dashboard Complete — Final Publication Review**
 
 Completed:
 - Python data exploration and data-quality checks
-- Sales, profitability, and discount analysis
+- Sales, profitability, customer, product, and discount analysis
 - Four Matplotlib visualizations
 - SQLite database setup
 - 12 documented and tested SQL queries
+- Three-page interactive Power BI dashboard
+- DAX measures for sales, profit, profit margin, and order count
+- Dashboard validation against Python and SQL results
+- Business findings and recommendations
 
 Remaining:
-- Interactive Power BI dashboard
-- Final business recommendations
-- Reproducibility testing and GitHub documentation review
+- Final README documentation updates
+- Reproducibility testing
+- Final GitHub commit and publication
 
 ## Project Deliverables
 
-- `explore_data.py` — Python data exploration and business analysis
+- `explore_data.py` — Python data exploration, data-quality checks, and business analysis
 - `visualize_data.py` — Generates four analytical charts
-- `setup_database.py` — Builds the SQLite database
-- `sql/retail_analysis.sql` — 12 documented SQL queries
-- `charts/` — Four visualizations
-- Power BI dashboard — Planned
+- `setup_database.py` — Creates and populates the SQLite database
+- `sql/retail_analysis.sql` — 12 documented and tested SQL queries
+- `charts/` — Four Python-generated visualizations
+- `dashboard/Retail_Sales_Dashboard.pbix` — Interactive three-page Power BI dashboard
+- `dashboard/Screenshots/` — Dashboard screenshots for GitHub preview
+- `README.md` — Project documentation, setup instructions, findings, and recommendations
+
+### Power BI Dashboard Pages
+
+1. **Executive Overview:** Sales, profit, profit margin, order count, monthly trends, and year filtering.
+2. **Product & Category Performance:** Category-level sales and profitability, Furniture subcategory losses, and business insights.
+3. **Discount & Profitability Analysis:** Furniture profit margins and sales by discount level, with recommendations.
+
+## Interactive Power BI Dashboard
+
+The three-page Power BI dashboard provides an interactive view of retail sales, profitability, product performance, and discount patterns.
+
+The report includes DAX measures, a date table, monthly sales and profit trends, category comparisons, and interactive filtering.
+
+The complete Power BI report is available at [`dashboard/Retail_Sales_Dashboard.pbix`](dashboard/Retail_Sales_Dashboard.pbix).
+
+### Page 1 — Executive Overview
+
+![Executive Overview](dashboard/Screenshots/Executive_Overview.png)
+
+### Page 2 — Product & Category Performance
+
+![Product & Category Performance](dashboard/Screenshots/Category_Performance.png)
+
+### Page 3 — Discount & Profitability Analysis
+
+![Discount & Profitability Analysis](dashboard/Screenshots/Discount_Analysis.png)
 
 ## Key Findings
 
