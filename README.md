@@ -80,8 +80,16 @@ Download the Sample Superstore CSV from the dataset source linked above.
 
 First, create the data directory in the project root:
 
+For macOS/Linux:
+
 ```bash
 mkdir -p data
+```
+
+For Windows PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force -Path data
 ```
 
 Save the downloaded CSV at:
@@ -113,8 +121,10 @@ This generates four PNG charts in the `charts/` directory.
 python setup_database.py
 ```
 
-This creates `data/superstore.db` and imports 9,994 records
-into the `orders` table.
+This creates `data/superstore.db` with two tables:
+
+- `orders` — Contains 9,994 retail transaction records.
+- `customers` — Contains customer-level information derived from the dataset.
 
 The SQL analysis queries are available in:
 
